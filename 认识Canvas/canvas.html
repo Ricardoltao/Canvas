@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="1024" height="700" style="border: 1px solid #aaa; display: block; margin: 0 auto;"></canvas>
+  <script>
+    window.onload = function(){
+      var canvas = document.getElementById('canvas');
+      var cvsCtx = canvas.getContext('2d');
+
+      //对 context 进行绘制
+      cvsCtx.beginPath();
+      cvsCtx.moveTo(100, 100);
+      cvsCtx.lineTo(600, 600);
+      cvsCtx.lineTo(100, 600);
+      cvsCtx.lineTo(100, 100);
+      cvsCtx.closePath();
+      cvsCtx.lineWidth = 5;
+      cvsCtx.strokeStyle = '#089';
+      cvsCtx.stroke();
+
+      cvsCtx.fillStyle = 'red';
+      cvsCtx.fill();
+
+      cvsCtx.beginPath();
+      cvsCtx.moveTo(500, 100);
+      cvsCtx.lineTo(500, 400);
+      cvsCtx.closePath();
+      cvsCtx.lineWidth = 5;
+      cvsCtx.strokeStyle = '#999';
+      cvsCtx.stroke();
+
+    }
+  </script>
+</body>
+</html>

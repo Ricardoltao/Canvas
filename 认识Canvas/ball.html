@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小球碰撞</title>
+</head>
+
+<body>
+  <canvas id="canvas" style="border: 1px solid #ccc;display: block;margin: 0 auto;"></canvas>
+  <script>
+    var ball = {
+      x: 512,
+      y: 100,
+      r: 20,
+      g: 2,
+      vx: -4,
+      vy: 0,
+      color: '#005588'
+    }
+    window.onload = function () {
+      var canvas = document.getElementById('canvas');
+
+      canvas.width = 1024;
+      canvas.height = 700;
+
+      var context = canvas.getContext('2d');
+
+      setInterval(
+        function () {
+          render(context)
+          update()
+        }, 50
+      )
+
+      function update() {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.vy += ball.g;
+        //下边框碰撞
+        if (ball.y >= 700 - ball.r) {
+          ball.y = 700 - ball.r
+          ball.vy = -ball.vy
+        }
+        if (ball.y <= 0 + ball.r) {
+          ball.y = 0 + ball.r;
+          ball.vy = -ball.vy;
+        }
+        if (ball.x >= 1024 - ball.r) {
+          ball.x = 1024 - ball.r
+          ball.vx = -ball.vx
+        }
+        if (ball.x <= 0 + ball.r) {
+          ball.x = 0 + ball.r;
+          ball.vx = -ball.vx;
+        }
+      }
+
+      function render(ctx) {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+        ctx.fillStyle = ball.color;
+        ctx.beginPath()
+        ctx.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI)
+        ctx.closePath()
+
+        ctx.fill()
+      }
+    }
+  </script>
+</body>
+
+</html>
